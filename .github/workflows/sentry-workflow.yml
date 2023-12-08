@@ -2,11 +2,36 @@ name: nest-action
 run-name: ${{ github.actor }}
 on: [push]
 jobs:
-    nest-source-map-upload:
+    integration:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 18
+            - name: integration
+              run: |
+                echo "Integration"
+            # - uses: actions/checkout@v4
+            # - uses: actions/setup-node@v4
+            #   with:
+            #     node-version: 18
+
+    dev-source-map-upload:
+        runs-on: ubuntu-latest
+        if: github.ref_name == 'develop'
+        environment: dev
+        needs: integration
+        steps:
+            - name: output branch test
+              run: echo ${{secrets.BRANCH}}
+            - name: url 環境
+              run: echo ${{vars.API_URL}}
+    prod-source-map-upload:
+        runs-on: ubuntu-latest
+        if: github.ref_name == 'main'
+        environment: prod
+        needs: integration
+        steps:
+            - name: output branch test
+              run: echo ${{secrets.BRANCH}}
+            - name: url 環境
+              run: echo ${{vars.API_URL}}
+                
             
