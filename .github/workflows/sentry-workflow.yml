@@ -23,6 +23,8 @@ jobs:
                 npm install
                 npm run build
                 npm run sentry:sourcemaps
+              env:
+                SENTRY_DSN: ${{ secrets.SENTRY_DSN}}
             - name: finish
               run: echo finish
     staging-source-map-upload:
