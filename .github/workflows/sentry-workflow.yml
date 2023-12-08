@@ -30,7 +30,7 @@ jobs:
               run: echo finish
     staging-source-map-upload:
         runs-on: ubuntu-latest
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'staging'
         environment: staging
         needs: integration
         steps:
