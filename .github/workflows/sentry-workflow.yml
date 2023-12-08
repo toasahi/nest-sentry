@@ -5,11 +5,11 @@ jobs:
     nest-source-map-upload:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 18
+            # - uses: actions/checkout@v4
+            # - uses: actions/setup-node@v4
+            #   with:
+            #     node-version: 18
             - name: output branch
-              run: echo "${{secrets.BRANCH}}"
+              run: echo ${{secrets.BRANCH}}
                 
             
