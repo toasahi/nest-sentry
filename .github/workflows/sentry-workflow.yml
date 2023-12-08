@@ -9,7 +9,7 @@ jobs:
             # - uses: actions/setup-node@v4
             #   with:
             #     node-version: 18
-            - name: output branch
+            - name: output branch test
               run: echo ${{secrets.BRANCH}}
             - name: url 環境
               run: echo ${{vars.API_URL}}
