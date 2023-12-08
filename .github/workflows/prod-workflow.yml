@@ -1,0 +1,13 @@
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'main'
+    environment: prod
+    steps:
+        - name: output branch test
+          run: echo ${{secrets.BRANCH}}
+        - name: url 環境
+          run: echo ${{vars.API_URL}}

@@ -6,12 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: integration
-              run: |
-                echo "Integration"
-            # - uses: actions/checkout@v4
-            # - uses: actions/setup-node@v4
-            #   with:
-            #     node-version: 18
+              uses: actions/checkout@v4
 
     dev-source-map-upload:
         runs-on: ubuntu-latest
@@ -19,19 +14,32 @@ jobs:
         environment: dev
         needs: integration
         steps:
-            - name: output branch test
-              run: echo ${{secrets.BRANCH}}
-            - name: url 環境
-              run: echo ${{vars.API_URL}}
-    prod-source-map-upload:
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 18
+            - name: Run
+              run: |
+                npm install
+                npm run build
+                npm run sentry:sourcemaps
+    staging-source-map-upload:
         runs-on: ubuntu-latest
         if: github.ref_name == 'main'
         environment: prod
         needs: integration
         steps:
-            - name: output branch test
-              run: echo ${{secrets.BRANCH}}
-            - name: url 環境
-              run: echo ${{vars.API_URL_TEST}}
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 18
+    prod-source-map-upload:
+        # uses: toasahi/nest-sentry/.github/workflows/prod-workflow.yml@main
+        runs-on: ubuntu-latest
+        if: github.ref_name == 'main'
+        environment: prod
+        needs: integration
+        steps:
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 18
                 
             
