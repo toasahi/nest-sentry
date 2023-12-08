@@ -14,6 +14,7 @@ jobs:
         environment: dev
         needs: integration
         steps:
+            - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
                 node-version: 18
@@ -22,15 +23,31 @@ jobs:
                 npm install
                 npm run build
                 npm run sentry:sourcemaps
+              env:
+                SENTRY_DSN: ${{ secrets.SENTRY_DSN}}
+                SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+            - name: finish
+              run: echo finish
     staging-source-map-upload:
         runs-on: ubuntu-latest
         if: github.ref_name == 'main'
         environment: prod
         needs: integration
         steps:
+            - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
                 node-version: 18
+            - name: Run
+              run: |
+                npm install
+                npm run build
+                npm run sentry:sourcemaps
+              env:
+                SENTRY_DSN: ${{ secrets.SENTRY_DSN}}
+                SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+            - name: finish
+              run: echo finish
     prod-source-map-upload:
         # uses: toasahi/nest-sentry/.github/workflows/prod-workflow.yml@main
         runs-on: ubuntu-latest
@@ -38,8 +55,19 @@ jobs:
         environment: prod
         needs: integration
         steps:
+            - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
                 node-version: 18
+            - name: Run
+              run: |
+                npm install
+                npm run build
+                npm run sentry:sourcemaps
+              env:
+                SENTRY_DSN: ${{ secrets.SENTRY_DSN}}
+                SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+            - name: finish
+              run: echo finish
                 
             
