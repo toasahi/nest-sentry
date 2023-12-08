@@ -10,6 +10,8 @@ jobs:
             #   with:
             #     node-version: 18
             - name: output branch
+              run: echo ${{secrets.BRANCH}}
+            - name: url
               run: echo ${{env.API_URL}}
                 
             
