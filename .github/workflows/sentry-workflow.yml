@@ -12,6 +12,6 @@ jobs:
             - name: output branch
               env:
                 BRANCH: ${{ secrets.BRANCH }}
-              run: echo "$BRANCH"
+              run: echo $BRANCH
                 
             
