@@ -11,7 +11,7 @@ jobs:
             #     node-version: 18
             - name: output branch
               run: echo ${{secrets.BRANCH}}
-            - name: url
+            - name: url 環境
               run: echo ${{env.API_URL}}
                 
             
