@@ -13,5 +13,7 @@ jobs:
               run: echo ${{secrets.BRANCH}}
             - name: url 環境
               run: echo ${{env.API_URL}}
+              env:
+                API_URL: ${{env.API_URL}}
                 
             
