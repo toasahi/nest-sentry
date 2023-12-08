@@ -10,8 +10,6 @@ jobs:
               with:
                 node-version: 18
             - name: output branch
-              env:
-                BRANCH: ${{ secrets.BRANCH }}
-              run: echo $BRANCH
+              run: echo "${{secrets.BRANCH}}"
                 
             
