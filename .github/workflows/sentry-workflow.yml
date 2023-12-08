@@ -32,6 +32,6 @@ jobs:
             - name: output branch test
               run: echo ${{secrets.BRANCH}}
             - name: url 環境
-              run: echo ${{vars.API_URL}}
+              run: echo ${{vars.API_URL_TEST}}
                 
             
