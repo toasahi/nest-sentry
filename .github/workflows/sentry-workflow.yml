@@ -9,4 +9,6 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                 node-version: 18
+            - name: output branch
+              run: echo ${{ secrets.BRANCH }}
             
