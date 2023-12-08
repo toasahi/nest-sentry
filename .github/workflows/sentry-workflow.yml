@@ -25,6 +25,7 @@ jobs:
                 npm run sentry:sourcemaps
               env:
                 SENTRY_DSN: ${{ secrets.SENTRY_DSN}}
+                SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
             - name: finish
               run: echo ${{secrets.SENTRY_AUTH_TOKEN}}
     staging-source-map-upload:
