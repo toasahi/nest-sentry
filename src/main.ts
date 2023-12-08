@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import * as Sentry from "@sentry/node";
 
 Sentry.init({
-  dsn: "https://1c0b49a4c1e77ae9dda7c249a0b57e52@o4506357249409024.ingest.sentry.io/4506357265596416",
+  dsn: process.env.SENTRY_DSN,
 });
 
 async function bootstrap() {
